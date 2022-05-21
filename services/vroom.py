@@ -1,5 +1,3 @@
-import json
-
 import numpy as np
 import vroom
 
@@ -40,7 +38,7 @@ def reformat_routes(routes, vehicle_ids):
     for vehicle_id in vehicle_ids:
         df = routes.loc[(routes.vehicle_id == vehicle_id) & (routes.id != np.NAN)]
         route_data = {
-            "jobs": df.id.values.tolist(),
+            "jobs": df.id.values.astype(str).tolist(),
         }
 
         response[vehicle_id] = route_data
